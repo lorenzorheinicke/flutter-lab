@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todoye/widgets/task_list.dart';
+import 'package:todoye/screens/add_task_screen.dart';
 
 class TasksScreen extends StatelessWidget {
   @override
@@ -66,49 +67,16 @@ class TasksScreen extends StatelessWidget {
         child: Icon(Icons.add),
         onPressed: () {
           showModalBottomSheet(
-              context: context,
-              builder: (context) => Container(
-                    color: Color(0xff757575),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(20),
-                          topRight: Radius.circular(20),
-                        ),
-                      ),
-                      height: 300,
-                      child: Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: Column(
-                          children: <Widget>[
-                            Text(
-                              "Add Task",
-                              style: TextStyle(
-                                color: Colors.lightBlueAccent,
-                                fontSize: 28,
-                                fontWeight: FontWeight.w700,
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(
-                                  bottom:
-                                      MediaQuery.of(context).viewInsets.bottom),
-                              child: TextField(
-                                decoration: InputDecoration(
-                                    border: UnderlineInputBorder(),
-                                    helperText: "Enter task to do"),
-                              ),
-                            ),
-                            FlatButton(
-                              child: Text('Add task'),
-                              onPressed: null,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ));
+            context: context,
+            isScrollControlled: true,
+            builder: (context) => SingleChildScrollView(
+              child: Container(
+                padding: EdgeInsets.only(
+                    bottom: MediaQuery.of(context).viewInsets.bottom),
+                child: AddTaskScreen(),
+              ),
+            ),
+          );
         },
         backgroundColor: Colors.lightBlueAccent,
       ),
